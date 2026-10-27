@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="ta">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>என் தொகுதி · My Constituency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f3f1f8; --card:#ffffff; --ink:#17142b; --muted:#625f7a; --line:#e3e0ee;
+  --accent:#4b2e83; --accent-soft:#ece6f7; --on-accent:#ffffff;
+  --done:#1b7f4b; --done-bg:#e1f4e9;
+  --going:#1c63b8; --going-bg:#e1ecfa;
+  --plan:#a86400; --plan-bg:#fdf0d9;
+  --fix:#c0392b; --fix-bg:#fbe5e2;
+  --dot-off:#dcd8ea;
+  --shadow:0 1px 2px rgba(23,20,43,.05),0 8px 24px rgba(23,20,43,.06);
+  --hero1:#2f1d63; --hero2:#6a42b8;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#0f0e1a; --card:#181630; --ink:#ece9f8; --muted:#a29fbd; --line:#2a2748;
+    --accent:#b79cf0; --accent-soft:#2a2347; --on-accent:#14102a;
+    --done:#5fd394; --done-bg:#12301f;
+    --going:#7db4f5; --going-bg:#13294a;
+    --plan:#f1b955; --plan-bg:#3a2a0d;
+    --fix:#ff8d80; --fix-bg:#3b1a17;
+    --dot-off:#2d2a4d; --shadow:none; --hero1:#251b4d; --hero2:#4a3a9a;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0f0e1a; --card:#181630; --ink:#ece9f8; --muted:#a29fbd; --line:#2a2748;
+  --accent:#b79cf0; --accent-soft:#2a2347; --on-accent:#14102a;
+  --done:#5fd394; --done-bg:#12301f;
+  --going:#7db4f5; --going-bg:#13294a;
+  --plan:#f1b955; --plan-bg:#3a2a0d;
+  --fix:#ff8d80; --fix-bg:#3b1a17;
+  --dot-off:#2d2a4d; --shadow:none; --hero1:#251b4d; --hero2:#4a3a9a;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Madurai","Noto Sans Tamil",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+[hidden]{display:none!important}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 130px}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:8px}
+h1,h2{margin:0}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 16px;max-width:760px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:19px}
+.mark{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--hero1),var(--hero2));display:grid;place-items:center}
+.mark i{display:block;width:6px;height:20px;border-radius:3px;background:#fff}
+.tools{display:flex;gap:6px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;cursor:pointer;font-size:14px;min-height:40px;min-width:40px}
+
+/* picker */
+.picker{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;display:grid;gap:10px;grid-template-columns:1fr;box-shadow:var(--shadow)}
+@media(min-width:620px){.picker{grid-template-columns:1fr 1fr}}
+label.f{display:grid;gap:4px;font-size:14px;color:var(--muted)}
+select,input[type=text],input[type=number]{width:100%;padding:10px 12px;border:1px solid var(--line);background:var(--bg);border-radius:12px;min-height:46px;color:var(--ink)}
+
+/* hero */
+.hero{margin-top:14px;border-radius:22px;padding:20px 18px 16px;color:#fff;background:radial-gradient(120% 140% at 100% 0%,var(--hero2),transparent 60%),linear-gradient(160deg,var(--hero1),#1d1245);box-shadow:var(--shadow)}
+.hero-top{display:flex;gap:6px;flex-wrap:wrap}
+.pill{background:rgba(255,255,255,.15);border-radius:999px;padding:2px 12px;font-size:14px}
+.hero h1{margin:10px 0 16px;font-size:30px;line-height:1.2;font-weight:700}
+.hero-body{display:grid;gap:16px;grid-template-columns:132px 1fr;align-items:center}
+@media(max-width:360px){.hero-body{grid-template-columns:1fr}}
+.grid100{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;width:132px}
+.grid100 span{aspect-ratio:1;border-radius:3px;background:rgba(255,255,255,.2)}
+.grid100 span.on{background:#ffbf5e}
+.hero-say{font-size:19px;line-height:1.4}
+.hero-say b{color:#ffd28a}
+.hero-sub{margin-top:6px;opacity:.85;font-size:14px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
+.chp{border:0;border-radius:999px;padding:6px 12px;background:rgba(255,255,255,.15);color:#fff;cursor:pointer;font-size:14px;min-height:38px;display:flex;gap:6px;align-items:center}
+.chp b{font-size:16px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+@media(min-width:620px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:var(--shadow)}
+.stat .si{width:34px;height:34px;border-radius:10px;background:var(--accent-soft);display:grid;place-items:center;font-size:18px;margin-bottom:6px}
+.stat .k{color:var(--muted);font-size:14px}
+.stat .v{font-size:22px;font-weight:700;line-height:1.25}
+.stat .h{color:var(--muted);font-size:13px}
+
+/* bottom navigation */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;display:grid;grid-template-columns:repeat(6,1fr);background:var(--card);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));box-shadow:0 -6px 24px rgba(23,20,43,.08)}
+@media(min-width:760px){.tabs{left:50%;right:auto;transform:translateX(-50%);width:560px;bottom:16px;border-radius:20px;border:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}}
+.tab{border:0;background:none;display:grid;justify-items:center;align-content:center;gap:2px;padding:4px 0;cursor:pointer;color:var(--muted);font-size:12px;min-height:54px;border-radius:12px}
+.tab .ic{position:relative;display:grid;place-items:center;width:48px;height:28px;border-radius:14px}
+.tab[aria-selected="true"]{color:var(--accent);font-weight:600}
+.tab[aria-selected="true"] .ic{background:var(--accent-soft)}
+.tab .n{position:absolute;top:-5px;right:0;min-width:18px;height:18px;border-radius:9px;background:var(--accent);color:var(--on-accent);font-size:11px;display:grid;place-items:center;padding:0 5px;font-weight:700}
+.tab[data-tab="fix"] .n{background:var(--fix);color:#fff}
+
+/* floating add button + sheet */
+.fab{position:fixed;right:16px;bottom:calc(86px + env(safe-area-inset-bottom,0px));z-index:24;border:0;border-radius:999px;background:var(--accent);color:var(--on-accent);padding:0 20px;min-height:52px;font-weight:700;font-size:16px;box-shadow:0 8px 24px rgba(75,46,131,.35);cursor:pointer}
+@media(min-width:760px){.fab{right:max(16px,calc(50% - 380px));bottom:96px}}
+.sheet{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-end;justify-content:center}
+.sheet .back{position:absolute;inset:0;background:rgba(10,8,25,.55)}
+.panelS{position:relative;width:min(560px,100%);max-height:92%;overflow:auto;background:var(--card);border-radius:22px 22px 0 0;padding:16px 16px calc(20px + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 40px rgba(0,0,0,.25)}
+.sh-h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;font-size:18px}
+.x{border:0;background:var(--bg);border-radius:50%;width:40px;height:40px;cursor:pointer;font-size:16px}
+
+/* lists */
+.panel{display:grid;gap:10px;margin-top:16px}
+.sec{font-size:16px;font-weight:700;margin:10px 2px 0}
+.item{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow)}
+.work{display:grid;grid-template-columns:46px 1fr;gap:12px}
+.wi{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:23px;background:var(--accent-soft)}
+.s-done .wi,.s-fixed .wi{background:var(--done-bg)}
+.s-going .wi{background:var(--going-bg)}
+.s-planned .wi{background:var(--plan-bg)}
+.s-repair .wi{background:var(--fix-bg)}
+.wb{display:grid;gap:6px;min-width:0;align-content:start}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.t{font-weight:600;line-height:1.35}
+.cost{font-weight:700;white-space:nowrap}
+.m{color:var(--muted);font-size:14px}
+.meta{color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;align-items:center}
+.meta>*+*::before{content:"•";margin:0 7px;opacity:.5}
+.badge{display:inline-block;font-size:13px;font-weight:600;border-radius:999px;padding:1px 10px}
+.b-done{background:var(--done-bg);color:var(--done)}
+.b-going{background:var(--going-bg);color:var(--going)}
+.b-plan{background:var(--plan-bg);color:var(--plan)}
+.b-fix{background:var(--fix-bg);color:var(--fix)}
+.b-pri{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.pri-high{box-shadow:inset 4px 0 0 var(--fix),var(--shadow)}
+.pri-med{box-shadow:inset 4px 0 0 var(--plan),var(--shadow)}
+.pri-low{box-shadow:inset 4px 0 0 var(--done),var(--shadow)}
+.acts{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.acts .btns{display:flex;gap:6px;flex-wrap:wrap}
+.me2{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 14px;cursor:pointer;min-height:40px;font-size:14px}
+.me2[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+.me2.fx{background:var(--done-bg);color:var(--done);border-color:transparent;font-weight:600}
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:16px;padding:26px 18px;text-align:center;color:var(--muted)}
+.empty .e{display:block;font-size:36px;margin-bottom:6px}
+
+/* funds */
+.fundcard{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
+@media(max-width:380px){.fundcard{grid-template-columns:1fr;justify-items:center}}
+.donut{width:150px;height:150px;display:block}
+.legend{display:grid;gap:12px}
+.lg{display:flex;gap:10px;align-items:center}
+.lg i{width:14px;height:14px;border-radius:4px;flex:none}
+.sector{display:grid;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow)}
+.bar{height:12px;border-radius:6px;background:var(--dot-off);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:6px}
+
+/* rewards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;display:grid;gap:10px;box-shadow:var(--shadow)}
+.pcard{color:#fff;border:0;background:radial-gradient(120% 140% at 100% 0%,var(--hero2),transparent 60%),linear-gradient(160deg,var(--hero1),#1d1245)}
+.pcard .m{color:rgba(255,255,255,.8)}
+.pcard .lvl{background:rgba(255,255,255,.2)}
+.pcard .lvl i{background:#ffbf5e}
+.prow{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.lvn{font-size:18px}
+.row2{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.big{font-size:44px;font-weight:700;line-height:1.1}
+.lvl{height:14px;border-radius:7px;background:var(--dot-off);overflow:hidden}
+.lvl i{display:block;height:100%;background:var(--accent);border-radius:7px}
+.tier{display:inline-block;border-radius:999px;padding:1px 12px;font-weight:700;font-size:14px;white-space:nowrap}
+.t-gold{background:#f7e3a1;color:#5c4400}.t-silver{background:#e3e7ee;color:#3b4658}.t-bronze{background:#f2d3bc;color:#6a3a14}
+.t-grow{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.stars{display:flex;gap:2px}
+.star{border:0;background:none;font-size:34px;line-height:1;cursor:pointer;color:var(--dot-off);min-width:46px;min-height:46px;padding:0}
+.star.on{color:#e0a100}
+.rank{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow)}
+.rank.me{border-color:var(--accent);background:var(--accent-soft)}
+.rank .no{font-weight:700;color:var(--muted);font-size:20px;text-align:center}
+.ladder{display:grid;gap:12px}
+.lad{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start}
+.lad .dot{width:30px;height:30px;border-radius:50%;background:var(--dot-off);color:var(--muted);display:grid;place-items:center;font-weight:700;font-size:14px}
+.lad.on .dot{background:var(--accent);color:var(--on-accent)}
+.rules{margin:0;padding-left:20px;color:var(--muted);font-size:15px;display:grid;gap:4px}
+
+/* forms */
+details.add{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:4px 14px;box-shadow:var(--shadow)}
+details.add summary{cursor:pointer;padding:12px 0;font-weight:600;min-height:46px}
+.form{display:grid;gap:10px;padding:4px 0 14px}
+@media(min-width:620px){.form.two{grid-template-columns:1fr 1fr}}
+.btn{background:var(--accent);color:var(--on-accent);border:0;border-radius:12px;padding:11px 20px;font-weight:700;cursor:pointer;min-height:46px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(150px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;z-index:70;font-size:15px;max-width:90%}
+.foot{margin-top:28px;color:var(--muted);font-size:13px}
+
+@media (prefers-reduced-motion:no-preference){
+  .bar i,.lvl i{transition:width .5s ease}
+  .grid100 span.on{animation:pop .35s both;animation-delay:calc(var(--i)*9ms)}
+  .panel,.stats{animation:fade .3s ease both}
+  .panelS{animation:up .28s ease both}
+  @keyframes pop{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="brand"><span class="mark" aria-hidden="true"><i></i></span><span id="appname"></span></div>
+  <div class="tools">
+    <button class="chip" id="langBtn" aria-pressed="false"></button>
+    <button class="chip" id="themeBtn" aria-label="Theme">◐</button>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="picker" aria-label="Choose constituency">
+    <label class="f"><span id="l-state"></span><select id="state"></select></label>
+    <label class="f"><span id="l-const"></span><select id="const"></select></label>
+  </section>
+
+  <div id="view"></div>
+
+  <details class="add" id="addConst">
+    <summary id="s-addc"></summary>
+    <div class="form two" id="addcForm"></div>
+  </details>
+
+  <p class="foot" id="foot"></p>
+</main>
+<nav class="tabs" id="nav" role="tablist" hidden></nav>
+<button class="fab" id="fab" hidden></button>
+<div class="sheet" id="sheet" hidden>
+  <div class="back" id="sheetBack"></div>
+  <div class="panelS" role="dialog" aria-modal="true" aria-labelledby="sheetT">
+    <div class="sh-h"><b id="sheetT"></b><button class="x" id="sheetX" aria-label="Close">✕</button></div>
+    <div id="sheetBody"></div>
+  </div>
+</div>
+<div id="toastHost" aria-live="polite"></div>
+
+<script>
+/* ---------- text in two languages ---------- */
+const T = {
+  en:{
+    app:"My Constituency", lang:"தமிழ்",
+    state:"State / Union Territory", const:"Constituency", pick:"Choose a constituency",
+    pickState:"Choose state", noConst:"No constituency added yet",
+    people:"People living here", voters:"Registered voters", area:"Area", type:"Type",
+    sqkm:"sq km", ls:"Lok Sabha", as:"Assembly", ward:"Local ward",
+    allotted:"Fund allotted", spent:"Spent so far", left:"Balance left",
+    heroTitle:(n)=>`${n}`,
+    heroSay:(x)=>`Out of every <b>₹100</b> allotted, <b>₹${x}</b> has been spent so far.`,
+    heroNote:(d,g,p,f)=>`${d} works finished · ${g} in progress · ${p} planned · ${f} repairs needed`,
+    tFund:"Funds", tDone:"Work done", tFix:"Repairs needed", tPlan:"Coming up",
+    bySector:"Where the money went", sectors:{roads:"Roads & bridges",water:"Drinking water",health:"Health",education:"Education",sanitation:"Sanitation & drains",power:"Electricity & lights",other:"Other"},
+    done:"Finished", going:"In progress", plan:"Planned", fix:"Needs repair",
+    high:"Urgent", med:"Soon", low:"Can wait",
+    cost:"Cost", date:"Date", metoo:"I face this too", reportedBy:(n)=>`${n} people affected`,
+    emptyDone:"No finished works added yet. Add one below.", emptyFix:"No repairs reported. Report a problem below.", emptyPlan:"No upcoming works added yet.",
+    addWork:"Add a work or report a problem", wTitle:"What is it?", wTitleP:"e.g. Pothole repair on Main Road",
+    wSector:"Area", wKind:"Status", wCost:"Cost in ₹ (estimate is fine)", wDate:"Date / expected by", wPri:"How urgent?",
+    save:"Save", saved:"Saved", needTitle:"Please type what the work is.",
+    addC:"Add a constituency", cName:"Constituency name", cPop:"Population", cVot:"Registered voters", cArea:"Area (sq km)", cFund:"Fund allotted (₹)", cType:"Type",
+    needName:"Please enter the constituency name.",
+    foot:"Sample figures are for illustration only. For official numbers, check Census of India, the Election Commission of India and the MPLADS dashboard (mplads.gov.in). Anything you add stays on this device.",
+    remove:"Remove", crore:"Cr", lakh:"L",
+    tMe:"My rewards", tAward:"Constituency award",
+    markFixed:"Mark as fixed", fixedB:"Fixed", fixedMsg:"Marked as fixed. Thank you!", rateMsg:"Thanks for rating",
+    ptsTitle:"Your points", topLevel:"You have reached the highest level.",
+    toNext:(n,name)=>`${n} more points to become ${name}`,
+    levels:[{min:0,n:"Newcomer",r:"Report a real problem near you to start earning."},{min:30,n:"Alert Citizen",r:"Digital badge on your profile."},{min:80,n:"Bronze Guardian",r:"e-certificate of appreciation."},{min:150,n:"Silver Guardian",r:"A place in your constituency’s weekly list."},{min:300,n:"Gold Guardian",r:"Invitation to the annual citizens’ award and partner gifts."}],
+    hRep:"Problems you reported", hFx:"Your reports that got fixed", hBack:"Reports you backed", hRate:"Constituencies you rated", pts:"points",
+    rewardLadder:"Rewards by level", rewardNote:"Gifts depend on partners (NGOs, media, local businesses). In this demo, levels and badges are shown for illustration.",
+    board:[["Selvi",410],["Murugan",360],["Fatima",290],["Arun",220],["Kavitha",150]], boardTitle:"Top citizens here (sample)", you:"You",
+    rulesTitle:"Rules to keep it fair",
+    rules:["Only real problems earn points. Duplicate or fake reports are removed and their points cancelled.","Up to 5 reports a day earn points.","Adding finished or planned works gives no points. Only problem reports, backing and ratings do.","A report earns a 20-point bonus once it is marked fixed.","In this demo, points stay on your device."],
+    scoreTitle:"Public-work score", of100:"out of 100", noScore:"Not enough data to score this constituency yet.",
+    sFund:"Funds used", sWorks:"Works completed", sRepair:"Repairs fixed", sRate:"Citizen rating",
+    scoreNote:"Score = funds used (30) + works completed (25) + repairs fixed (25) + citizen rating (20). Anyone can check it against the numbers on this page.",
+    tGold:"Gold", tSilver:"Silver", tBronze:"Bronze", tGrow:"Needs improvement",
+    rateTitle:"Rate the work done here", rateAvg:(a,n)=>`Average ${a} out of 5 from ${n} people`, noRate:"No ratings yet. Be the first.",
+    rankTitle:"Constituency ranking",
+    nFund:"Funds", nDone:"Done", nFix:"Repairs", nPlan:"Upcoming", nMe:"Rewards", nAward:"Award", addShort:"Report / add",
+    awardTitle:"Public Service Award", awardText:"Each year, the top-scoring constituency in every state earns a Public Service Award for its MLA or MP: a certificate, public felicitation and a place in the Hall of Fame. Scores use only the numbers on this page.", tiersText:"Gold: 80 and above. Silver: 65 and above. Bronze: 50 and above.",
+    awardNote:"This award is a proposal. It needs a partner (an election body, media house or civic group) to present it. Scores can depend on data that has not been verified."
+  },
+  ta:{
+    app:"என் தொகுதி", lang:"English",
+    state:"மாநிலம் / யூனியன் பிரதேசம்", const:"தொகுதி", pick:"தொகுதியைத் தேர்ந்தெடுங்கள்",
+    pickState:"மாநிலத்தைத் தேர்ந்தெடுங்கள்", noConst:"இன்னும் தொகுதி சேர்க்கப்படவில்லை",
+    people:"இங்கு வாழும் மக்கள்", voters:"பதிவு பெற்ற வாக்காளர்கள்", area:"பரப்பளவு", type:"வகை",
+    sqkm:"ச.கி.மீ", ls:"மக்களவை", as:"சட்டமன்றம்", ward:"உள்ளூர் வார்டு",
+    allotted:"ஒதுக்கப்பட்ட நிதி", spent:"இதுவரை செலவு", left:"மீதமுள்ள நிதி",
+    heroTitle:(n)=>`${n}`,
+    heroSay:(x)=>`ஒதுக்கப்பட்ட ஒவ்வொரு <b>₹100</b>-லும் இதுவரை <b>₹${x}</b> செலவிடப்பட்டுள்ளது.`,
+    heroNote:(d,g,p,f)=>`${d} பணிகள் முடிந்தன · ${g} நடைபெறுகின்றன · ${p} திட்டமிடப்பட்டவை · ${f} பழுதுகள் சரிசெய்ய வேண்டும்`,
+    tFund:"நிதி", tDone:"செய்த பணிகள்", tFix:"பராமரிப்பு தேவைகள்", tPlan:"வரவிருப்பவை",
+    bySector:"நிதி எங்கே செலவானது", sectors:{roads:"சாலை & பாலம்",water:"குடிநீர்",health:"சுகாதாரம்",education:"கல்வி",sanitation:"தூய்மை & வடிகால்",power:"மின்சாரம் & விளக்குகள்",other:"மற்றவை"},
+    done:"முடிந்தது", going:"நடைபெறுகிறது", plan:"திட்டமிடப்பட்டது", fix:"பழுது சரிசெய்ய வேண்டும்",
+    high:"அவசரம்", med:"விரைவில்", low:"பொறுக்கலாம்",
+    cost:"செலவு", date:"தேதி", metoo:"எனக்கும் இந்தப் பிரச்சினை", reportedBy:(n)=>`${n} பேர் பாதிப்பு`,
+    emptyDone:"முடிந்த பணிகள் எதுவும் சேர்க்கப்படவில்லை. கீழே சேர்க்கலாம்.", emptyFix:"பழுதுகள் எதுவும் பதிவாகவில்லை. கீழே பிரச்சினையைப் பதிவு செய்யுங்கள்.", emptyPlan:"வரவிருக்கும் பணிகள் எதுவும் சேர்க்கப்படவில்லை.",
+    addWork:"பணியைச் சேர்க்க / பிரச்சினையைப் பதிவு செய்ய", wTitle:"என்ன பணி / பிரச்சினை?", wTitleP:"எ.கா. பிரதான சாலையில் குழி சரிசெய்தல்",
+    wSector:"துறை", wKind:"நிலை", wCost:"செலவு ₹ (மதிப்பீடு போதும்)", wDate:"தேதி / எதிர்பார்க்கும் தேதி", wPri:"எவ்வளவு அவசரம்?",
+    save:"சேமி", saved:"சேமிக்கப்பட்டது", needTitle:"பணி என்ன என்று தட்டச்சு செய்யுங்கள்.",
+    addC:"புதிய தொகுதியைச் சேர்க்க", cName:"தொகுதியின் பெயர்", cPop:"மக்கள் தொகை", cVot:"பதிவு பெற்ற வாக்காளர்கள்", cArea:"பரப்பளவு (ச.கி.மீ)", cFund:"ஒதுக்கப்பட்ட நிதி (₹)", cType:"வகை",
+    needName:"தொகுதியின் பெயரை உள்ளிடுங்கள்.",
+    foot:"காட்டப்பட்டுள்ள எண்கள் மாதிரிக்காக மட்டுமே. அதிகாரப்பூர்வ விவரங்களுக்கு இந்தியக் குடிமதிப்பீடு, தேர்தல் ஆணையம், MPLADS தளம் (mplads.gov.in) ஆகியவற்றைப் பாருங்கள். நீங்கள் சேர்ப்பவை இந்தச் சாதனத்தில் மட்டுமே இருக்கும்.",
+    remove:"நீக்கு", crore:"கோடி", lakh:"லட்சம்",
+    tMe:"எனது பரிசுகள்", tAward:"தொகுதி விருது",
+    markFixed:"சரிசெய்யப்பட்டது", fixedB:"சரிசெய்யப்பட்டது", fixedMsg:"சரிசெய்யப்பட்டதாகப் பதிவானது. நன்றி!", rateMsg:"மதிப்பீட்டுக்கு நன்றி",
+    ptsTitle:"உங்கள் புள்ளிகள்", topLevel:"நீங்கள் உயர்ந்த நிலையை அடைந்துவிட்டீர்கள்.",
+    toNext:(n,name)=>`“${name}” நிலையை அடைய இன்னும் ${n} புள்ளிகள்`,
+    levels:[{min:0,n:"புதியவர்",r:"உங்கள் அருகிலுள்ள உண்மையான பிரச்சினையைப் பதிவு செய்து புள்ளிகளைப் பெறத் தொடங்குங்கள்."},{min:30,n:"விழிப்புள்ள குடிமகன்",r:"சுயவிவரத்தில் டிஜிட்டல் பேட்ஜ்."},{min:80,n:"வெண்கலக் காவலர்",r:"பாராட்டு இ-சான்றிதழ்."},{min:150,n:"வெள்ளிக் காவலர்",r:"உங்கள் தொகுதியின் வாராந்திரப் பட்டியலில் இடம்."},{min:300,n:"தங்கக் காவலர்",r:"ஆண்டு குடிமக்கள் விருது விழாவுக்கு அழைப்பு, பங்குதாரர் பரிசுகள்."}],
+    hRep:"நீங்கள் பதிவு செய்த பிரச்சினைகள்", hFx:"சரிசெய்யப்பட்ட உங்கள் பதிவுகள்", hBack:"நீங்கள் ஆதரித்த பதிவுகள்", hRate:"நீங்கள் மதிப்பிட்ட தொகுதிகள்", pts:"புள்ளிகள்",
+    rewardLadder:"நிலைக்கு ஏற்ற பரிசுகள்", rewardNote:"பரிசுகள் பங்குதாரர்களைப் (தன்னார்வ அமைப்புகள், ஊடகங்கள், உள்ளூர் வணிகர்கள்) பொறுத்தவை. இந்த மாதிரி ஆப்பில் நிலைகளும் பேட்ஜ்களும் விளக்கத்துக்காக மட்டுமே.",
+    board:[["செல்வி",410],["முருகன்",360],["பாத்திமா",290],["அருண்",220],["கவிதா",150]], boardTitle:"இங்குள்ள சிறந்த குடிமக்கள் (மாதிரி)", you:"நீங்கள்",
+    rulesTitle:"நியாயம் காக்கும் விதிகள்",
+    rules:["உண்மையான பிரச்சினைகளுக்கு மட்டுமே புள்ளிகள். போலியாகவோ மீண்டும் மீண்டும் பதிவிட்டாலோ அவை நீக்கப்பட்டு, புள்ளிகள் ரத்தாகும்.","ஒரு நாளில் 5 பதிவுகளுக்கு மட்டுமே புள்ளிகள் கிடைக்கும்.","முடிந்த அல்லது திட்டமிட்ட பணிகளைச் சேர்ப்பதற்குப் புள்ளி இல்லை. பிரச்சினை பதிவு, ஆதரவு, மதிப்பீடு ஆகியவற்றுக்கு மட்டுமே.","பதிவு சரிசெய்யப்பட்டதாகக் குறிக்கப்பட்டால் 20 புள்ளிகள் கூடுதலாகக் கிடைக்கும்.","இந்த மாதிரி ஆப்பில் புள்ளிகள் உங்கள் சாதனத்தில் மட்டுமே சேமிக்கப்படும்."],
+    scoreTitle:"மக்கள் பணி மதிப்பெண்", of100:"/ 100", noScore:"இந்தத் தொகுதிக்கு மதிப்பெண் இட இன்னும் போதிய தரவு இல்லை.",
+    sFund:"நிதி பயன்பாடு", sWorks:"முடிந்த பணிகள்", sRepair:"சரிசெய்யப்பட்ட பழுதுகள்", sRate:"மக்கள் மதிப்பீடு",
+    scoreNote:"மதிப்பெண் = நிதி பயன்பாடு (30) + முடிந்த பணிகள் (25) + சரிசெய்யப்பட்ட பழுதுகள் (25) + மக்கள் மதிப்பீடு (20). இந்தப் பக்கத்திலுள்ள எண்களை வைத்து யார் வேண்டுமானாலும் சரிபார்க்கலாம்.",
+    tGold:"தங்கம்", tSilver:"வெள்ளி", tBronze:"வெண்கலம்", tGrow:"முன்னேற்றம் தேவை",
+    rateTitle:"இங்கு நடந்த பணிகளை மதிப்பிடுங்கள்", rateAvg:(a,n)=>`${n} பேரின் சராசரி மதிப்பீடு 5-க்கு ${a}`, noRate:"இன்னும் மதிப்பீடு இல்லை. முதல் நபராக மதிப்பிடுங்கள்.",
+    rankTitle:"தொகுதிகளின் தரவரிசை",
+    nFund:"நிதி", nDone:"பணிகள்", nFix:"பழுது", nPlan:"வருவன", nMe:"பரிசு", nAward:"விருது", addShort:"பதிவு செய்",
+    awardTitle:"மக்கள் பணி விருது", awardText:"ஒவ்வொரு ஆண்டும் ஒவ்வொரு மாநிலத்திலும் அதிக மதிப்பெண் பெறும் தொகுதியின் எம்.எல்.ஏ. அல்லது எம்.பி.க்கு மக்கள் பணி விருது வழங்கப்படும்: சான்றிதழ், பொதுப் பாராட்டு, புகழ் மன்றத்தில் இடம். மதிப்பெண் இந்தப் பக்கத்திலுள்ள எண்களை மட்டுமே சார்ந்தது.", tiersText:"தங்கம்: 80-க்கு மேல். வெள்ளி: 65-க்கு மேல். வெண்கலம்: 50-க்கு மேல்.",
+    awardNote:"இது ஒரு முன்மொழிவு. இதை வழங்க ஒரு பங்குதாரர் (தேர்தல் ஆணையம் சார்ந்த அமைப்பு, ஊடகம் அல்லது குடிமைச் சங்கம்) தேவை. சரிபார்க்கப்படாத தரவையும் மதிப்பெண் சார்ந்திருக்கலாம்."
+  }
+};
+const STATES = ["Andaman and Nicobar Islands","Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chandigarh","Chhattisgarh","Dadra and Nagar Haveli and Daman and Diu","Delhi","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Ladakh","Lakshadweep","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Puducherry","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal"];
+const STATES_TA = {"Tamil Nadu":"தமிழ்நாடு","Puducherry":"புதுச்சேரி","Kerala":"கேரளா","Karnataka":"கர்நாடகா","Andhra Pradesh":"ஆந்திரப் பிரதேசம்","Telangana":"தெலங்கானா","Maharashtra":"மகாராஷ்டிரா","Rajasthan":"ராஜஸ்தான்","Delhi":"டெல்லி","Gujarat":"குஜராத்","West Bengal":"மேற்கு வங்கம்","Uttar Pradesh":"உத்தரப் பிரதேசம்"};
+
+/* ---------- sample data (illustrative) ---------- */
+const w=(id,title,sector,cost,status,date,pri,votes,ta)=>({id,title,ta,sector,cost,status,date,pri:pri||"med",votes:votes||0});
+const SAMPLE = [
+ {id:"s-cbe",state:"Tamil Nadu",name:"Coimbatore",ta:"கோயம்புத்தூர்",type:"ls",rate:{avg:3.8,n:420},pop:2150000,voters:1560000,area:1120,allot:50000000,works:[
+  w("a1","Resurfaced 14 km of Avinashi Road service lanes","roads",9800000,"done","Mar 2025","med",0,"அவிநாசி சாலை சர்வீஸ் பாதைகளில் 14 கி.மீ புதிய தார்ச்சாலை"),
+  w("a2","Borewell and overhead tank for 6 hamlets","water",7200000,"done","Aug 2025","med",0,"6 குக்கிராமங்களுக்கு ஆழ்துளைக் கிணறு, மேல்நிலைத் தொட்டி"),
+  w("a3","Smart classrooms in 9 government schools","education",5400000,"done","Jan 2026","low",0,"9 அரசுப் பள்ளிகளில் ஸ்மார்ட் வகுப்பறைகள்"),
+  w("a4","Primary health centre extension","health",8100000,"going","Due Dec 2026","med",0,"ஆரம்ப சுகாதார நிலைய விரிவாக்கம்"),
+  w("a5","Street lights near Singanallur lake","power",2100000,"done","Jun 2025","low",0,"சிங்காநல்லூர் ஏரி அருகே தெருவிளக்குகள்"),
+  w("a6","Storm-water drain at Ukkadam","sanitation",12500000,"planned","Start Feb 2027","high",0,"உக்கடத்தில் மழைநீர் வடிகால்"),
+  w("a7","Potholes on Trichy Road near flyover","roads",900000,"repair","Reported Oct 2026","high",214,"திருச்சி சாலை மேம்பாலம் அருகே குழிகள்"),
+  w("a8","Park lights not working, Race Course","power",250000,"repair","Reported Sep 2026","low",46,"ரேஸ் கோர்ஸ் பூங்காவில் விளக்குகள் எரியவில்லை"),
+  w("a9","Leaking pipeline on Sathy Road","water",600000,"repair","Reported Oct 2026","med",131,"சத்தி சாலையில் குழாய் கசிவு"),
+  w("a10","Broken manhole cover, Gandhipuram main road","sanitation",120000,"fixed","Fixed Sep 2026","high",96,"காந்திபுரம் பிரதான சாலையில் உடைந்த மேன்ஹோல் மூடி"),
+  w("a11","Dead street lights, RS Puram","power",180000,"fixed","Fixed Aug 2026","med",72,"ஆர்.எஸ்.புரத்தில் எரியாத தெருவிளக்குகள்")]},
+ {id:"s-mdu",state:"Tamil Nadu",name:"Madurai",ta:"மதுரை",type:"ls",rate:{avg:3.4,n:310},pop:2020000,voters:1480000,area:980,allot:50000000,works:[
+  w("b1","Footpath and drain along Vaigai river road","sanitation",11000000,"done","Nov 2025","med",0,"வைகை ஆற்றுச் சாலையில் நடைபாதை, வடிகால்"),
+  w("b2","Anganwadi buildings, 12 villages","education",6600000,"done","Apr 2026","low",0,"12 கிராமங்களில் அங்கன்வாடிக் கட்டிடங்கள்"),
+  w("b3","Ambulance bay at Government hospital","health",4300000,"going","Due Jan 2027","high",0,"அரசு மருத்துவமனையில் ஆம்புலன்ஸ் நிறுத்துமிடம்"),
+  w("b4","Solar high-mast lights, 20 junctions","power",5200000,"planned","Start Jan 2027","med",0,"20 சந்திப்புகளில் சூரிய உயர்கோபுர விளக்குகள்"),
+  w("b5","Broken culvert at Thirunagar","roads",1400000,"repair","Reported Oct 2026","high",178,"திருநகரில் உடைந்த சிறுபாலம்"),
+  w("b6","Overflowing sewage near market","sanitation",800000,"repair","Reported Oct 2026","high",203,"சந்தை அருகே கழிவுநீர் வழிகிறது"),
+  w("b7","Garbage pile near bus stand","sanitation",90000,"fixed","Fixed Oct 2026","med",110,"பேருந்து நிலையம் அருகே குப்பைக் குவியல்")]},
+ {id:"s-blr",state:"Karnataka",name:"Bengaluru South",ta:"",type:"ls",rate:{avg:3.1,n:260},pop:2600000,voters:1940000,area:310,allot:50000000,works:[
+  w("c1","Rainwater harvesting pits, 40 streets","water",4800000,"done","Jul 2025","low"),
+  w("c2","Junction improvement, Jayanagar","roads",15000000,"done","Feb 2026","med"),
+  w("c3","Government school lab upgrade","education",3900000,"going","Due Dec 2026","med"),
+  w("c4","Lake edge fencing and cleaning","sanitation",9000000,"planned","Start Mar 2027","med"),
+  w("c5","Footpath slabs broken, 4th Block","roads",700000,"repair","Reported Oct 2026","med",88),
+  w("c6","Open drain cover near Jayanagar market","sanitation",150000,"fixed","Fixed Sep 2026","high",67)]},
+ {id:"s-pune",state:"Maharashtra",name:"Pune",ta:"",type:"ls",rate:{avg:3.6,n:290},pop:2450000,voters:1790000,area:520,allot:50000000,works:[
+  w("d1","Bus shelters with lights, 30 stops","power",6000000,"done","May 2025","low"),
+  w("d2","Water-line replacement, Kothrud","water",13000000,"done","Dec 2025","med"),
+  w("d3","Dialysis unit at civic hospital","health",9500000,"going","Due Nov 2026","high"),
+  w("d4","Cycle track on University Road","roads",7000000,"planned","Start Jan 2027","low"),
+  w("d5","Garbage collection point overflowing","sanitation",300000,"repair","Reported Oct 2026","med",64),
+  w("d6","Water leak at Kothrud bus stop","water",80000,"fixed","Fixed Aug 2026","med",41)]},
+ {id:"s-ekm",state:"Kerala",name:"Ernakulam",ta:"",type:"ls",rate:{avg:3.9,n:240},pop:2000000,voters:1470000,area:700,allot:50000000,works:[
+  w("e1","Canal desilting, 8 km","sanitation",8800000,"done","Jun 2025","high"),
+  w("e2","Link road resurfacing, Edappally","roads",6500000,"done","Oct 2025","med"),
+  w("e3","Library and study room, Aluva","education",4200000,"going","Due Jan 2027","low"),
+  w("e4","Flood-proof pumping station","water",14000000,"planned","Start Apr 2027","high"),
+  w("e5","Street light failures, Kakkanad road","power",350000,"repair","Reported Oct 2026","med",57)]}
+];
+
+/* ---------- state ---------- */
+let lang="ta", theme=null, curState="Tamil Nadu", curId="s-cbe", tab="done";
+let custom={consts:[],works:{},removed:{}}, votes={};
+const store={
+  get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+(function load(){
+  const c=store.get("et_custom"); if(c) custom=Object.assign(custom,c);
+  custom.fixed=custom.fixed||{}; custom.ratings=custom.ratings||{};
+  const v=store.get("et_votes"); if(v) votes=v;
+  const l=store.get("et_lang"); if(l) lang=l;
+  const th=store.get("et_theme"); if(th){theme=th;document.documentElement.setAttribute("data-theme",th)}
+})();
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const t=()=>T[lang];
+
+function allConsts(){ return SAMPLE.concat(custom.consts); }
+function constsOf(state){ return allConsts().filter(c=>c.state===state); }
+function getConst(id){ return allConsts().find(c=>c.id===id); }
+function worksOf(c){
+  const extra=custom.works[c.id]||[];
+  const base=c.works?c.works.concat(extra):extra;
+  return base.map(x=>custom.fixed[x.id]&&x.status==="repair"?Object.assign({},x,{status:"fixed",date:"Fixed "+custom.fixed[x.id]}):x);
+}
+
+/* ---------- number formatting (Indian system) ---------- */
+function inr(n){
+  const L=t();
+  if(n>=1e7) return "₹"+(n/1e7).toFixed(2).replace(/\.?0+$/,"")+" "+L.crore;
+  if(n>=1e5) return "₹"+(n/1e5).toFixed(2).replace(/\.?0+$/,"")+" "+L.lakh;
+  return "₹"+Math.round(n).toLocaleString("en-IN");
+}
+const num=n=>Math.round(n).toLocaleString("en-IN");
+
+/* ---------- render ---------- */
+function stateName(s){return lang==="ta"&&STATES_TA[s]?STATES_TA[s]:s}
+function cName(c){return lang==="ta"&&c.ta?c.ta:c.name}
+function wTitle(x){return lang==="ta"&&x.ta?x.ta:x.title}
+
+function renderChrome(){
+  const L=t();
+  document.documentElement.lang=lang;
+  $("appname").textContent=L.app;
+  document.title=L.app+" · "+(lang==="ta"?"My Constituency":"என் தொகுதி");
+  $("langBtn").textContent=L.lang;
+  $("l-state").textContent=L.state; $("l-const").textContent=L.const;
+  $("s-addc").textContent="+ "+L.addC;
+  $("foot").textContent=L.foot;
+  $("fab").textContent="＋ "+L.addShort;
+  $("state").innerHTML=STATES.map(s=>`<option value="${esc(s)}"${s===curState?" selected":""}>${esc(stateName(s))}</option>`).join("");
+  renderConstSelect();
+  renderAddConstForm();
+}
+function renderConstSelect(){
+  const L=t(), list=constsOf(curState);
+  const sel=$("const");
+  if(!list.length){ sel.innerHTML=`<option value="">${esc(L.noConst)}</option>`; sel.disabled=true; curId=null; return; }
+  sel.disabled=false;
+  if(!list.find(c=>c.id===curId)) curId=list[0].id;
+  sel.innerHTML=list.map(c=>`<option value="${c.id}"${c.id===curId?" selected":""}>${esc(cName(c))}</option>`).join("");
+}
+
+const SIC={roads:"🛣️",water:"💧",health:"🏥",education:"🎓",sanitation:"🧹",power:"💡",other:"🏗️"};
+const svg=d=>`<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const NAV=[
+  ["fund","nFund",`<path d="M21 12a9 9 0 1 1-9-9v9z"/><path d="M12 3a9 9 0 0 1 9 9h-9z"/>`],
+  ["done","nDone",`<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16 9.5"/>`],
+  ["fix","nFix",`<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/>`],
+  ["plan","nPlan",`<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>`],
+  ["me","nMe",`<rect x="3.5" y="9" width="17" height="11" rx="2"/><path d="M12 9v11M3.5 13h17M12 9c-2.5 0-4.5-1-4.5-3S10 3.5 12 6c2-2.5 4.5-1 4.5 1s-2 3-4.5 3z"/>`],
+  ["award","nAward",`<path d="M8 4h8v6a4 4 0 0 1-8 0zM8 6H4.5A3 3 0 0 0 8 10M16 6h3.5A3 3 0 0 1 16 10M12 14v4M8.5 20h7"/>`]
+];
+function donut(pct,center){
+  const C=2*Math.PI*54, d=C*Math.max(0,Math.min(100,pct))/100;
+  return `<svg class="donut" viewBox="0 0 140 140" role="img" aria-label="${pct}%"><circle cx="70" cy="70" r="54" fill="none" stroke="var(--dot-off)" stroke-width="16"/><circle cx="70" cy="70" r="54" fill="none" stroke="var(--accent)" stroke-width="16" stroke-linecap="round" stroke-dasharray="${d} ${C}" transform="rotate(-90 70 70)"/><text x="70" y="70" text-anchor="middle" dominant-baseline="central" font-size="30" font-weight="700" fill="var(--ink)">${center}</text></svg>`;
+}
+const empty=(m,e)=>`<div class="empty"><span class="e">${e}</span>${m}</div>`;
+function scrollPanel(){
+  const p=$("panel"); if(!p) return;
+  const y=p.getBoundingClientRect().top+window.scrollY-80;
+  if(window.scrollY>y) window.scrollTo({top:y});
+}
+
+function renderView(){
+  const L=t(), c=curId&&getConst(curId), v=$("view"), nav=$("nav");
+  nav.hidden=!c; $("fab").hidden=!c;
+  if(!c){ v.innerHTML=`<div class="empty" style="margin-top:16px"><span class="e">🗺️</span>${esc(L.noConst)}<br>${esc(L.addC)} ↓</div>`; return; }
+  const works=worksOf(c);
+  const done=works.filter(x=>x.status==="done"||x.status==="fixed"), going=works.filter(x=>x.status==="going"),
+        plan=works.filter(x=>x.status==="planned"), fix=works.filter(x=>x.status==="repair");
+  const spent=sumCost(done)+sumCost(going), allot=c.allot||0;
+  const pct=allot?Math.min(100,Math.round(spent/allot*100)):0;
+  const typeLbl=c.type==="ls"?L.ls:c.type==="as"?L.as:L.ward;
+  const dots=Array.from({length:100},(_,i)=>`<span class="${i<pct?"on":""}" style="--i:${i}"></span>`).join("");
+
+  let h=`
+  <section class="hero" aria-labelledby="hname">
+    <div class="hero-top"><span class="pill">📍 ${esc(stateName(c.state))}</span><span class="pill">${esc(typeLbl)}</span></div>
+    <h1 id="hname">${esc(cName(c))}</h1>
+    <div class="hero-body">
+      <div class="grid100" role="img" aria-label="${pct}%">${dots}</div>
+      <div><div class="hero-say">${L.heroSay(pct)}</div><div class="hero-sub">${inr(spent)} / ${inr(allot)}</div></div>
+    </div>
+    <div class="chips">
+      <button class="chp" data-go="done">✅ <b>${done.length}</b> ${L.done}</button>
+      <button class="chp" data-go="plan">⏳ <b>${going.length}</b> ${L.going}</button>
+      <button class="chp" data-go="plan">📅 <b>${plan.length}</b> ${L.plan}</button>
+      <button class="chp" data-go="fix">🔧 <b>${fix.length}</b> ${L.fix}</button>
+    </div>
+  </section>
+  <section class="stats">
+    <div class="stat"><div class="si">👥</div><div class="k">${L.people}</div><div class="v">${num(c.pop||0)}</div></div>
+    <div class="stat"><div class="si">🗳️</div><div class="k">${L.voters}</div><div class="v">${num(c.voters||0)}</div></div>
+    <div class="stat"><div class="si">💰</div><div class="k">${L.allotted}</div><div class="v">${inr(allot)}</div></div>
+    <div class="stat"><div class="si">📐</div><div class="k">${L.area}</div><div class="v">${num(c.area||0)}</div><div class="h">${L.sqkm}</div></div>
+  </section>
+  <div class="panel" id="panel">`;
+
+  if(tab==="fund"){
+    const by={}; done.concat(going).forEach(x=>by[x.sector]=(by[x.sector]||0)+(+x.cost||0));
+    const keys=Object.keys(by).sort((a,b)=>by[b]-by[a]), tot=spent||1;
+    h+=`<div class="item fundcard"><div>${donut(pct,pct+"%")}</div><div class="legend">
+      <div class="lg"><i style="border:2px solid var(--muted)"></i><div><div class="m">${L.allotted}</div><b>${inr(allot)}</b></div></div>
+      <div class="lg"><i style="background:var(--accent)"></i><div><div class="m">${L.spent}</div><b>${inr(spent)}</b></div></div>
+      <div class="lg"><i style="background:var(--dot-off)"></i><div><div class="m">${L.left}</div><b>${inr(Math.max(0,allot-spent))}</b></div></div></div></div>
+      <h2 class="sec">${L.bySector}</h2>`;
+    if(!keys.length) h+=empty(L.emptyDone,"📭");
+    keys.forEach(k=>{const share=Math.round(by[k]/tot*100);
+      h+=`<div class="sector"><div class="row2"><span>${SIC[k]||SIC.other} ${esc(L.sectors[k]||k)}</span><span><b>${inr(by[k])}</b> <span class="m">${share}%</span></span></div><div class="bar"><i style="width:${share}%"></i></div></div>`;});
+  }
+  if(tab==="done"){
+    if(!done.length) h+=empty(L.emptyDone,"📭");
+    done.forEach(x=>h+=workCard(x,c));
+  }
+  if(tab==="fix"){
+    const order={high:0,med:1,low:2};
+    fix.sort((a,b)=>(order[a.pri]-order[b.pri])||(vcount(b)-vcount(a)));
+    if(!fix.length) h+=empty(L.emptyFix,"🎉");
+    fix.forEach(x=>h+=fixCard(x,c));
+  }
+  if(tab==="plan"){
+    if(!(going.length+plan.length)) h+=empty(L.emptyPlan,"📅");
+    going.concat(plan).forEach(x=>h+=workCard(x,c));
+  }
+  if(tab==="me") h+=meTab(c);
+  if(tab==="award") h+=awardTab(c);
+  h+=`</div>`;
+  v.innerHTML=h; wire(v);
+
+  nav.innerHTML=NAV.map(n=>{
+    const cnt=n[0]==="done"?done.length:n[0]==="fix"?fix.length:n[0]==="plan"?plan.length+going.length:0;
+    return `<button class="tab" role="tab" data-tab="${n[0]}" aria-selected="${tab===n[0]}"><span class="ic">${svg(n[2])}${cnt?`<span class="n">${cnt}</span>`:""}</span><span class="lb">${L[n[1]]}</span></button>`;
+  }).join("");
+  nav.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{tab=b.dataset.tab;renderView();scrollPanel()});
+}
+
+function vcount(x){ return (x.votes||0)+(votes[x.id]?1:0); }
+function badge(s){
+  const L=t();
+  return s==="fixed"?`<span class="badge b-done">${L.fixedB}</span>`:s==="done"?`<span class="badge b-done">${L.done}</span>`:
+         s==="going"?`<span class="badge b-going">${L.going}</span>`:
+         s==="planned"?`<span class="badge b-plan">${L.plan}</span>`:
+         `<span class="badge b-fix">${L.fix}</span>`;
+}
+function workCard(x,c){
+  const L=t(), mine=(custom.works[c.id]||[]).some(y=>y.id===x.id);
+  return `<article class="item work s-${x.status}">
+    <div class="wi" aria-hidden="true">${SIC[x.sector]||SIC.other}</div>
+    <div class="wb">
+      <div class="row"><div class="t">${esc(wTitle(x))}</div><div class="cost">${x.cost?inr(x.cost):""}</div></div>
+      <div class="meta">${badge(x.status)}<span>${esc(L.sectors[x.sector]||x.sector)}</span>${x.date?`<span>${esc(x.date)}</span>`:""}</div>
+      ${mine?`<div><button class="me2 rm" data-id="${x.id}">${L.remove}</button></div>`:""}
+    </div></article>`;
+}
+function fixCard(x,c){
+  const L=t(), mine=(custom.works[c.id]||[]).some(y=>y.id===x.id), on=!!votes[x.id];
+  return `<article class="item work s-repair pri-${x.pri}">
+    <div class="wi" aria-hidden="true">${SIC[x.sector]||SIC.other}</div>
+    <div class="wb">
+      <div class="row"><div class="t">${esc(wTitle(x))}</div><div class="cost">${x.cost?inr(x.cost):""}</div></div>
+      <div class="meta"><span class="badge b-pri">${L[x.pri]}</span><span>${esc(L.sectors[x.sector]||x.sector)}</span>${x.date?`<span>${esc(x.date)}</span>`:""}</div>
+      <div class="m">👥 ${L.reportedBy(num(vcount(x)))}</div>
+      <div class="acts"><div class="btns">
+        <button class="me2" data-id="${x.id}" aria-pressed="${on}">${on?"✓ ":"👍 "}${L.metoo}</button>
+        <button class="me2 fx" data-id="${x.id}">✓ ${L.markFixed}</button>
+        ${mine?`<button class="me2 rm" data-id="${x.id}">${L.remove}</button>`:""}
+      </div></div>
+    </div></article>`;
+}
+
+/* ---------- actions ---------- */
+function toast(msg){
+  const d=document.createElement("div");d.className="toast";d.textContent=msg;$("toastHost").appendChild(d);
+  setTimeout(()=>d.remove(),2200);
+}
+function toggleVote(id){
+  if(votes[id]) delete votes[id]; else votes[id]=1;
+  store.set("et_votes",votes); renderView();
+}
+function saveWork(){
+  const L=t(), title=$("wt").value.trim();
+  if(!title){toast(L.needTitle);$("wt").focus();return}
+  const x={id:"u"+Date.now(),title,sector:$("ws").value,cost:+$("wc").value||0,status:$("wk").value,date:$("wd").value.trim(),pri:$("wp").value,votes:0,ts:Date.now(),by:"me",orig:$("wk").value};
+  (custom.works[curId]=custom.works[curId]||[]).push(x);
+  store.set("et_custom",custom);
+  tab = x.status==="done"?"done":x.status==="repair"?"fix":"plan";
+  closeSheet(); renderView(); toast(L.saved);
+}
+function removeWork(id){
+  custom.works[curId]=(custom.works[curId]||[]).filter(x=>x.id!==id);
+  store.set("et_custom",custom); renderView();
+}
+function renderAddConstForm(){
+  const L=t();
+  $("addcForm").innerHTML=`
+    <label class="f" style="grid-column:1/-1">${L.cName}<input type="text" id="cn" maxlength="80"></label>
+    <label class="f">${L.cType}<select id="ct"><option value="ls">${L.ls}</option><option value="as">${L.as}</option><option value="ward">${L.ward}</option></select></label>
+    <label class="f">${L.cPop}<input type="number" id="cp" min="0" inputmode="numeric"></label>
+    <label class="f">${L.cVot}<input type="number" id="cv" min="0" inputmode="numeric"></label>
+    <label class="f">${L.cArea}<input type="number" id="ca" min="0" inputmode="numeric"></label>
+    <label class="f">${L.cFund}<input type="number" id="cf" min="0" inputmode="numeric"></label>
+    <div style="align-self:end"><button class="btn" id="saveConst">${L.save}</button></div>`;
+  $("saveConst").onclick=()=>{
+    const name=$("cn").value.trim();
+    if(!name){toast(L.needName);$("cn").focus();return}
+    const c={id:"u"+Date.now(),state:curState,name,ta:"",type:$("ct").value,pop:+$("cp").value||0,voters:+$("cv").value||0,area:+$("ca").value||0,allot:+$("cf").value||0,works:[]};
+    custom.consts.push(c); store.set("et_custom",custom);
+    curId=c.id; tab="done"; renderConstSelect(); renderView(); toast(L.saved);
+    $("addConst").open=false; window.scrollTo({top:0,behavior:"smooth"});
+  };
+}
+
+/* ---------- rewards ---------- */
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+const sumCost=a=>a.reduce((q,x)=>q+(+x.cost||0),0);
+function ratingOf(c){
+  const b=c.rate||{avg:0,n:0}, mine=custom.ratings[c.id]||0;
+  if(!mine) return {avg:b.avg,n:b.n,mine:0};
+  const n=b.n+1; return {avg:(b.avg*b.n+mine)/n,n,mine};
+}
+function scoreOf(c){
+  const ws=worksOf(c);
+  const d=ws.filter(x=>x.status==="done"||x.status==="fixed"), g=ws.filter(x=>x.status==="going"),
+        p=ws.filter(x=>x.status==="planned"), op=ws.filter(x=>x.status==="repair"), fx=ws.filter(x=>x.status==="fixed");
+  const fund=c.allot?clamp((sumCost(d)+sumCost(g))/c.allot,0,1):0;
+  const tw=d.length+g.length+p.length, wk=tw?d.length/tw:0;
+  const tr=fx.length+op.length, rp=tr?fx.length/tr:0;
+  const r=ratingOf(c), rt=r.n?r.avg/5:0;
+  const parts=[["sFund",fund,30],["sWorks",wk,25],["sRepair",rp,25],["sRate",rt,20]].map(a=>({k:a[0],f:a[1],m:a[2],pts:a[1]*a[2]}));
+  return {total:Math.round(parts.reduce((q,x)=>q+x.pts,0)),parts,has:ws.length>0||r.n>0,r};
+}
+function tierOf(s){ return s>=80?["gold","tGold"]:s>=65?["silver","tSilver"]:s>=50?["bronze","tBronze"]:["grow","tGrow"]; }
+function myPoints(){
+  const mine=[];
+  Object.keys(custom.works).forEach(k=>(custom.works[k]||[]).forEach(x=>{if(x.by==="me"&&x.orig==="repair")mine.push(x)}));
+  const perDay={}; let rep=0, fx=0;
+  mine.forEach(x=>{const d=new Date(x.ts||0).toDateString(); perDay[d]=(perDay[d]||0)+1; if(perDay[d]<=5)rep++; if(custom.fixed[x.id])fx++;});
+  const rows=[["rep",rep,10],["fx",fx,20],["back",Object.keys(votes).length,2],["rate",Object.keys(custom.ratings).length,3]];
+  return {rows,total:rows.reduce((q,r)=>q+r[1]*r[2],0)};
+}
+function levelOf(pts){ let i=0; t().levels.forEach((l,j)=>{if(pts>=l.min)i=j}); return i; }
+function markFixed(id){
+  custom.fixed[id]=new Date().toLocaleDateString("en-IN",{month:"short",year:"numeric"});
+  store.set("et_custom",custom); toast(t().fixedMsg); renderView();
+}
+function rateConst(n){
+  custom.ratings[curId]=n; store.set("et_custom",custom); toast(t().rateMsg); renderView();
+}
+const TIER_EMO={gold:"🥇",silver:"🥈",bronze:"🥉",grow:"🌱"};
+const medal=i=>i<3?["🥇","🥈","🥉"][i]:String(i+1);
+function meTab(c){
+  const L=t(), P=myPoints(), li=levelOf(P.total), lv=L.levels[li], nx=L.levels[li+1];
+  const prog=nx?clamp((P.total-lv.min)/(nx.min-lv.min),0,1)*100:100;
+  const lbl={rep:L.hRep,fx:L.hFx,back:L.hBack,rate:L.hRate};
+  const ico={rep:"📝",fx:"✅",back:"👍",rate:"⭐"};
+  let h=`<div class="card pcard"><div class="m">🏅 ${L.ptsTitle}</div>
+    <div class="prow"><span class="big">${P.total}</span><b class="lvn">${esc(lv.n)}</b></div>
+    <div class="lvl" role="img" aria-label="${Math.round(prog)}%"><i style="width:${prog}%"></i></div>
+    <div class="m">${nx?L.toNext(nx.min-P.total,esc(nx.n)):L.topLevel}</div></div>`;
+  h+=`<div class="card">`+P.rows.map(r=>`<div class="row2"><span>${ico[r[0]]} ${lbl[r[0]]} <span class="m">(${r[1]} × ${r[2]})</span></span><b>${r[1]*r[2]}</b></div>`).join("")+`</div>`;
+  h+=`<div class="card"><b>🎁 ${L.rewardLadder}</b><div class="ladder">`+L.levels.map((l,i)=>`<div class="lad${i<=li?" on":""}"><span class="dot">${i<=li?"✓":i+1}</span><div><b>${esc(l.n)}</b> <span class="m">${l.min} ${L.pts}</span><div>${esc(l.r)}</div></div></div>`).join("")+`</div><div class="m">${L.rewardNote}</div></div>`;
+  const all=L.board.map(b=>({n:b[0],p:b[1]})).concat([{n:L.you,p:P.total,me:1}]).sort((a,b)=>b.p-a.p);
+  const top=all.slice(0,5); if(!top.some(x=>x.me)) top.push(all.find(x=>x.me));
+  h+=`<h2 class="sec">👥 ${L.boardTitle}</h2>`+top.map(x=>`<div class="rank${x.me?" me":""}"><span class="no">${medal(all.indexOf(x))}</span><span>${esc(x.n)}</span><b>${x.p}</b></div>`).join("");
+  h+=`<div class="card"><b>🛡️ ${L.rulesTitle}</b><ul class="rules">${L.rules.map(r=>`<li>${esc(r)}</li>`).join("")}</ul></div>`;
+  return h;
+}
+function awardTab(c){
+  const L=t(), s=scoreOf(c), tr=tierOf(s.total), r=s.r;
+  let h=`<div class="card"><b>🏆 ${L.scoreTitle}</b>`;
+  if(!s.has) h+=`<div class="m">${L.noScore}</div>`;
+  else h+=`<div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">${donut(s.total,s.total)}<div><span class="tier t-${tr[0]}">${TIER_EMO[tr[0]]} ${L[tr[1]]}</span><div class="m" style="margin-top:6px">${L.of100}</div></div></div>`;
+  const pi={sFund:"💰",sWorks:"🏗️",sRepair:"🔧",sRate:"⭐"};
+  s.parts.forEach(p=>{h+=`<div><div class="row2"><span>${pi[p.k]} ${L[p.k]}</span><b>${p.pts.toFixed(1)} / ${p.m}</b></div><div class="bar"><i style="width:${Math.round(p.f*100)}%"></i></div></div>`;});
+  h+=`<div class="m">${L.scoreNote}</div></div>`;
+  h+=`<div class="card"><b>⭐ ${L.rateTitle}</b><div class="stars">${[1,2,3,4,5].map(i=>`<button class="star${i<=r.mine?" on":""}" data-v="${i}" aria-label="${i} / 5">★</button>`).join("")}</div><div class="m">${r.n?L.rateAvg(r.avg.toFixed(1),num(r.n)):L.noRate}</div></div>`;
+  const all=allConsts().map(x=>({c:x,s:scoreOf(x)})).filter(x=>x.s.has).sort((a,b)=>b.s.total-a.s.total).slice(0,10);
+  h+=`<h2 class="sec">📊 ${L.rankTitle}</h2>`;
+  all.forEach((x,i)=>{const k=tierOf(x.s.total);h+=`<div class="rank${x.c.id===c.id?" me":""}"><span class="no">${medal(i)}</span><span>${esc(cName(x.c))} <span class="m">${esc(stateName(x.c.state))}</span></span><span><b>${x.s.total}</b> <span class="tier t-${k[0]}">${TIER_EMO[k[0]]} ${L[k[1]]}</span></span></div>`;});
+  h+=`<div class="card"><b>🎖️ ${L.awardTitle}</b><div>${L.awardText}</div><div class="m">${L.tiersText}</div><div class="m">${L.awardNote}</div></div>`;
+  return h;
+}
+function wire(v){
+  v.querySelectorAll(".chp").forEach(b=>b.onclick=()=>{tab=b.dataset.go;renderView();scrollPanel()});
+  v.querySelectorAll(".me2").forEach(b=>b.onclick=()=>toggleVote(b.dataset.id));
+  v.querySelectorAll(".rm").forEach(b=>b.onclick=()=>removeWork(b.dataset.id));
+  v.querySelectorAll(".fx").forEach(b=>b.onclick=()=>markFixed(b.dataset.id));
+  v.querySelectorAll(".star").forEach(b=>b.onclick=()=>rateConst(+b.dataset.v));
+}
+
+/* ---------- add sheet ---------- */
+function openSheet(){
+  const L=t(), def=tab==="plan"?"planned":tab==="done"?"done":"repair";
+  const opt=(k,l)=>`<option value="${k}"${k===def?" selected":""}>${l}</option>`;
+  $("sheetT").textContent=L.addWork;
+  $("sheetBody").innerHTML=`<div class="form two">
+    <label class="f" style="grid-column:1/-1">${L.wTitle}<input type="text" id="wt" maxlength="120" placeholder="${esc(L.wTitleP)}"></label>
+    <label class="f">${L.wKind}<select id="wk">${opt("repair",L.fix)}${opt("planned",L.plan)}${opt("going",L.going)}${opt("done",L.done)}</select></label>
+    <label class="f">${L.wSector}<select id="ws">${Object.keys(L.sectors).map(k=>`<option value="${k}">${SIC[k]} ${esc(L.sectors[k])}</option>`).join("")}</select></label>
+    <label class="f">${L.wCost}<input type="number" id="wc" min="0" inputmode="numeric"></label>
+    <label class="f">${L.wDate}<input type="text" id="wd" maxlength="30" placeholder="Dec 2026"></label>
+    <label class="f">${L.wPri}<select id="wp"><option value="high">${L.high}</option><option value="med" selected>${L.med}</option><option value="low">${L.low}</option></select></label>
+    <div style="align-self:end"><button class="btn" id="saveWork">${L.save}</button></div>
+  </div>`;
+  $("sheet").hidden=false; document.body.style.overflow="hidden";
+  $("saveWork").onclick=saveWork;
+  setTimeout(()=>{const i=$("wt"); if(i) i.focus()},60);
+}
+function closeSheet(){ $("sheet").hidden=true; document.body.style.overflow=""; }
+
+/* ---------- wiring ---------- */
+$("state").onchange=e=>{curState=e.target.value;curId=null;renderConstSelect();renderView()};
+$("const").onchange=e=>{curId=e.target.value;renderView()};
+$("langBtn").onclick=()=>{lang=lang==="ta"?"en":"ta";store.set("et_lang",lang);renderChrome();renderView()};
+$("themeBtn").onclick=()=>{
+  const dark=document.documentElement.getAttribute("data-theme")==="dark"||
+    (!document.documentElement.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches);
+  theme=dark?"light":"dark";
+  document.documentElement.setAttribute("data-theme",theme);store.set("et_theme",theme);
+};
+$("fab").onclick=openSheet;
+$("sheetX").onclick=closeSheet;
+$("sheetBack").onclick=closeSheet;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
+renderChrome(); renderView();
+</script>
+</body>
+</html>
